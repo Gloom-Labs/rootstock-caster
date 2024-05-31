@@ -24,7 +24,7 @@ const config = getDefaultConfig({
     },
   ],
   transports: {
-    [rootstock.id]: http(),
+    [rootstock.id]: http(process.env.NEXT_PUBLIC_RPC_URL),
   },
   ssr: true,
 });

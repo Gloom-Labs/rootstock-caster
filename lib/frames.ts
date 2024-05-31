@@ -16,10 +16,4 @@ export const frames = createFrames({
   ],
 });
 
-export const validateMessage = (isValid?: boolean) => {
-  if (isProd && !isValid) {
-    throw new Error("Frame message is not valid");
-  }
-};
-
 export const SHARE_URL = `https://warpcast.com/~/compose?embeds%5B%5D=${APP_URL}`;

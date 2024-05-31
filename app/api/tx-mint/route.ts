@@ -3,13 +3,10 @@ import { NextResponse } from "next/server";
 import { encodeFunctionData } from "viem";
 import { rootstock } from "viem/chains";
 
-import { frames, validateMessage } from "@/lib/frames";
+import { frames } from "@/lib/frames";
 import { GLOOMERS_CONTRACT_CONFIG } from "@/lib/contracts";
 
 export const POST = frames(async (ctx) => {
-  const { isValid } = ctx?.message || {};
-  validateMessage(isValid);
-
   const gloomersContractAddress = GLOOMERS_CONTRACT_CONFIG.address;
   const calldata = encodeFunctionData({
     abi: GLOOMERS_CONTRACT_CONFIG.abi,
