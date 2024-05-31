@@ -5,7 +5,7 @@ import { APP_URL, DEFAULT_IMAGE_OPTIONS } from "@/app/config";
 import { FrameLayout } from "@/components/frame-layout";
 
 const handleRequest = frames(async (ctx) => {
-  const isRSKaster = ctx.baseUrl?.origin.includes("rskaster");
+  const isRSKaster = true; // ctx.baseUrl?.origin.includes("rskaster");
   return {
     image: (
       <FrameLayout>

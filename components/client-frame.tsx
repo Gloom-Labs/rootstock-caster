@@ -6,7 +6,8 @@ import { FrameImageNext } from "@frames.js/render/next";
 import { useFrame } from "@frames.js/render/use-frame";
 import { useWriteContract } from "wagmi";
 
-const APP_URL = "http://localhost:3000"; //process.env.NEXT_PUBLIC_APP_URL;
+const APP_URL = "http://localhost:3000";
+//process.env.NEXT_PUBLIC_APP_URL;
 
 export const ClientFrame = () => {
   const { data, writeContractAsync } = useWriteContract();
