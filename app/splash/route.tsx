@@ -5,7 +5,7 @@ import { APP_URL, DEFAULT_IMAGE_OPTIONS } from "@/app/config";
 import { FrameLayout } from "@/components/frame-layout";
 
 const handleRequest = frames(async (ctx) => {
-  console.log("ctx", ctx.baseUrl);
+  const isRSKaster = ctx.baseUrl?.origin.includes("rskaster");
   return {
     image: (
       <FrameLayout>
@@ -33,8 +33,13 @@ const handleRequest = frames(async (ctx) => {
       >
         Bridge
       </Button>,
-      <Button key="btn-mint" action="tx" target="api/tx-mint" post_url="/tx-mint-result">
-        Mint
+      <Button
+        key="btn-mint"
+        action={isRSKaster ? "tx" : "link"}
+        target={isRSKaster ? "api/tx-mint" : APP_URL}
+        post_url={isRSKaster ? "/tx-mint-result" : undefined}
+      >
+        {isRSKaster ? "Mint" : "Mint on RSKaster"}
       </Button>,
     ],
   };

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { fetchMetadata } from "frames.js/next";
 
 import { APP_URL, DEBUGGER_URL } from "@/app/config";
-import { ClientFrame } from "../components/client-frame";
+import { ClientFrame } from "@/components/client-frame";
 import { ConnectButton } from "@/components/connect-button";
 
 export async function generateMetadata(): Promise<Metadata> {
