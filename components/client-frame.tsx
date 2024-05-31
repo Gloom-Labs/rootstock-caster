@@ -6,19 +6,18 @@ import { FrameImageNext } from "@frames.js/render/next";
 import { useFrame } from "@frames.js/render/use-frame";
 import { useWriteContract } from "wagmi";
 
-const APP_URL = "http://localhost:3000";
-//process.env.NEXT_PUBLIC_APP_URL;
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL;
+
+// TODO: replace with your farcaster signer
+const farcasterSigner: FarcasterSigner = {
+  fid: 1,
+  status: "approved",
+  publicKey: "0x00000000000000000000000000000000000000000000000000000000000000000",
+  privateKey: "0x00000000000000000000000000000000000000000000000000000000000000000",
+};
 
 export const ClientFrame = () => {
   const { data, writeContractAsync } = useWriteContract();
-
-  // TODO: replace with your farcaster signer
-  const farcasterSigner: FarcasterSigner = {
-    fid: 1,
-    status: "approved",
-    publicKey: "0x00000000000000000000000000000000000000000000000000000000000000000",
-    privateKey: "0x00000000000000000000000000000000000000000000000000000000000000000",
-  };
 
   const frameState = useFrame({
     // replace with your frame url
@@ -36,14 +35,14 @@ export const ClientFrame = () => {
       onSignerlessFramePress: () => {
         // Only run if `hasSigner` is set to `false`
         // This is a good place to throw an error or prompt the user to login
-        alert("A frame button was pressed without a signer. Perhaps you want to prompt a login");
+        console.error("A frame button was pressed without a signer. Perhaps you want to prompt a login");
       },
       signFrameAction: signFrameAction,
     },
     onTransaction: async (onTxArgs): Promise<`0x${string}` | null> => {
       // This is a good place to handle a transaction
-      const abi = onTxArgs.transactionData.params.abi as any;
-      const functionName = onTxArgs.frameButton.target?.includes("mint") ? "mint" : "bridge";
+      const abi = onTxArgs?.transactionData?.params?.abi as any;
+      const functionName = onTxArgs?.frameButton.target?.includes("mint") ? "mint" : "bridge";
 
       const res = await writeContractAsync({
         abi,

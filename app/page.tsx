@@ -30,7 +30,7 @@ export default async function Home() {
         <p className="text-4xl md:text-6xl font-bold">RSKaster</p>
         <div className="flex items-center mt-4" />
         <div className="size-96">
-          <ClientFrame />
+          {/* <ClientFrame /> */}
         </div>
       </div>
 
